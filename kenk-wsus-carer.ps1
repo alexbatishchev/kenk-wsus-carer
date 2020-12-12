@@ -6,9 +6,9 @@ wlog ("Starting: " + $MyInvocation.MyCommand.Definition)
 
 ################################################
 # Contstants (default GUIDs)
-#'Неназначенные компьютеры' aka 'Unassigned Computers'
+#'РќРµРЅР°Р·РЅР°С‡РµРЅРЅС‹Рµ РєРѕРјРїСЊСЋС‚РµСЂС‹' aka 'Unassigned Computers'
 $sUnassignedComputersGuid = "b73ca6ed-5727-47f3-84de-015e03f6a88a"
-# 'Все компьютеры'  aka 'All Computers'
+# 'Р’СЃРµ РєРѕРјРїСЊСЋС‚РµСЂС‹'  aka 'All Computers'
 $sAllComputersGuid = "a0a08746-4dbe-4a37-9adf-9e7652c0b421" 
 
 $strReport = generateHtmlHeader
@@ -81,7 +81,7 @@ if ($bDoMoveComputers ) {
 			}
 		}		
 		if ($sMovingReport -ne "") {
-			logh2 ("Перемещены компьютеры:")([ref]$strReport)
+			logh2 ("РџРµСЂРµРјРµС‰РµРЅС‹ РєРѕРјРїСЊСЋС‚РµСЂС‹:")([ref]$strReport)
 			log ($sMovingReport)([ref]$strReport)
 		}
 	}
@@ -96,7 +96,7 @@ if ($bDoDeclineUpdatesBySearchStrings) {
 
 	$sText = $aCaptionsToIgnore -join ']['
 	$sText = "[" + $sText + "]"
-	$sText = "Обновления отклоняются по признаку обнаружения в тексте описания любой из строк: " + $sText
+	$sText = "РћР±РЅРѕРІР»РµРЅРёСЏ РѕС‚РєР»РѕРЅСЏСЋС‚СЃСЏ РїРѕ РїСЂРёР·РЅР°РєСѓ РѕР±РЅР°СЂСѓР¶РµРЅРёСЏ РІ С‚РµРєСЃС‚Рµ РѕРїРёСЃР°РЅРёСЏ Р»СЋР±РѕР№ РёР· СЃС‚СЂРѕРє: " + $sText
 	wlog ($sText)
 
 	$sTDecliningReport = ""
@@ -111,7 +111,7 @@ if ($bDoDeclineUpdatesBySearchStrings) {
 		If ($updates.Count -gt 0)
 		{
 			$bDoSendReport = $true
-			logH2 ("Найдены и отклонены обновления для $sSearchString") ([ref]$sTDecliningReport)
+			logH2 ("РќР°Р№РґРµРЅС‹ Рё РѕС‚РєР»РѕРЅРµРЅС‹ РѕР±РЅРѕРІР»РµРЅРёСЏ РґР»СЏ $sSearchString") ([ref]$sTDecliningReport)
 			$updates | ForEach-Object{
 				$_.Decline() 
 			}	
@@ -132,7 +132,7 @@ if ($bDoDeclineUpdatesBySearchStrings) {
 	if ($sTDecliningReport -ne "") {
 		$sText = $aCaptionsToIgnore -join ']['
 		$sText = "[" + $sText + "]"
-		$sText = "Обновления отклоняются по признаку обнаружения в тексте описания любой из строк: " + $sText
+		$sText = "РћР±РЅРѕРІР»РµРЅРёСЏ РѕС‚РєР»РѕРЅСЏСЋС‚СЃСЏ РїРѕ РїСЂРёР·РЅР°РєСѓ РѕР±РЅР°СЂСѓР¶РµРЅРёСЏ РІ С‚РµРєСЃС‚Рµ РѕРїРёСЃР°РЅРёСЏ Р»СЋР±РѕР№ РёР· СЃС‚СЂРѕРє: " + $sText
 	
 		loggray ($sText) ([ref]$sTDecliningReport)
 		$strReport = $strReport + $sTDecliningReport
@@ -206,8 +206,8 @@ if ($bDoApproveTestedUpdates) {
 
 			$tStrRep = logtable $tPrintUpdate ([ref]$sAutoApprovalLog)
 			$sDate_to = $date_to.ToString("yyyy-MM-dd HH:mm:ss")
-			logh2 ("Автоматически одобрены на все группы обновления, которые одобрены для тестовой группы до даты $sDate_to" ) ([ref]$strReport)
-			log ("Всего одобрено обновлений:$sAutoApprovalCount")([ref]$strReport)
+			logh2 ("РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РѕРґРѕР±СЂРµРЅС‹ РЅР° РІСЃРµ РіСЂСѓРїРїС‹ РѕР±РЅРѕРІР»РµРЅРёСЏ, РєРѕС‚РѕСЂС‹Рµ РѕРґРѕР±СЂРµРЅС‹ РґР»СЏ С‚РµСЃС‚РѕРІРѕР№ РіСЂСѓРїРїС‹ РґРѕ РґР°С‚С‹ $sDate_to" ) ([ref]$strReport)
+			log ("Р’СЃРµРіРѕ РѕРґРѕР±СЂРµРЅРѕ РѕР±РЅРѕРІР»РµРЅРёР№:$sAutoApprovalCount")([ref]$strReport)
 			$strReport = $strReport + $sAutoApprovalLog
 		}
 	}
@@ -222,13 +222,13 @@ else
 	wlog ("preparing and sening report")	
 
 	$EndDate=(GET-DATE)
-	$sTimediff = NEW-TIMESPAN –Start $StartDate –End $EndDate
+	$sTimediff = NEW-TIMESPAN вЂ“Start $StartDate вЂ“End $EndDate
 
 	
 	log ("#####################################################") ([ref]$strReport)
-	log ("Время создания отчета: " + $EndDate ) ([ref]$strReport)
-	log ("Длительность обработки: " + $sTimediff ) ([ref]$strReport)
-	log ("Отчет сформирован скриптом  " + $MyInvocation.MyCommand.Definition + " на " + "$env:computername.$env:userdnsdomain" ) ([ref]$strReport)
+	log ("Р’СЂРµРјСЏ СЃРѕР·РґР°РЅРёСЏ РѕС‚С‡РµС‚Р°: " + $EndDate ) ([ref]$strReport)
+	log ("Р”Р»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РѕР±СЂР°Р±РѕС‚РєРё: " + $sTimediff ) ([ref]$strReport)
+	log ("РћС‚С‡РµС‚ СЃС„РѕСЂРјРёСЂРѕРІР°РЅ СЃРєСЂРёРїС‚РѕРј  " + $MyInvocation.MyCommand.Definition + " РЅР° " + "$env:computername.$env:userdnsdomain" ) ([ref]$strReport)
 
 	$strReport =  $strReport + "</body></html>"
 
@@ -242,7 +242,7 @@ else
 	$msg.From = $sReporterMail
 	$msg.ReplyTo = $sReporterMail
 
-	$sSubj = "Отчет о работе обслужатора WSUS"
+	$sSubj = "РћС‚С‡РµС‚ Рѕ СЂР°Р±РѕС‚Рµ РѕР±СЃР»СѓР¶Р°С‚РѕСЂР° WSUS"
 	$msg.To.Add($sReportReceiver)
 
 	$msg.subject = $sSubj

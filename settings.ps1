@@ -17,14 +17,14 @@ $sLogFilePathTemplate = "yyyy-MM"
 ##################################################################
 
 $bDoMoveComputers = $true
-$sTargetGroupToMoveName = 'Рабочие станции Обычные'
+$sTargetGroupToMoveName = 'Р Р°Р±РѕС‡РёРµ СЃС‚Р°РЅС†РёРё РћР±С‹С‡РЅС‹Рµ'
 $sSearchStringsInHostnamesPath = ".\comp-names-to-move.txt"
 
 $bDoDeclineUpdatesBySearchStrings = $true
 $sSearchStringsInUpdatesPath = ".\update-captions-to-decline.txt"
 
 $bDoApproveTestedUpdates  = $true
-$sGroupNameToTest = 'Компьютеры для проверки обновлений'
+$sGroupNameToTest = 'РљРѕРјРїСЊСЋС‚РµСЂС‹ РґР»СЏ РїСЂРѕРІРµСЂРєРё РѕР±РЅРѕРІР»РµРЅРёР№'
 $iDaysToWaitBeforeApproveToAll = 7
 
 
